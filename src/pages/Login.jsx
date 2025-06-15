@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -18,7 +19,7 @@ const Login = () => {
       localStorage.setItem('token', res.data.token);
       navigate('/');
     } catch (err) {
-      alert('Connexion échouée');
+      toast.error('Connexion échouée');
     }
   };
 

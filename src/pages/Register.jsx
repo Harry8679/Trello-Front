@@ -67,53 +67,53 @@ const Register = () => {
           required
         />
 
-<div className="relative mb-4">
-  <input
-    type={showPassword ? 'text' : 'password'}
-    placeholder="Mot de passe"
-    className={`w-full border p-2 rounded pr-10 ${
-      password && confirmPassword
-        ? password === confirmPassword
-          ? 'border-green-500'
-          : 'border-red-500'
-        : ''
-    }`}
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
-    required
-  />
-  <button
-    type="button"
-    onClick={() => setShowPassword(!showPassword)}
-    className="absolute right-2 top-2 text-sm text-gray-500 hover:text-gray-700"
-  >
-    {showPassword ? 'Masquer' : 'Afficher'}
-  </button>
-</div>
+        <div className="relative mb-4">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            placeholder="Mot de passe"
+            className={`w-full border p-2 rounded pr-10 ${
+              password && confirmPassword
+                ? password === confirmPassword
+                  ? 'border-green-500'
+                  : 'border-red-500'
+                : ''
+            }`}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-2 top-2 text-sm text-gray-500 hover:text-gray-700"
+          >
+            {showPassword ? 'Masquer' : 'Afficher'}
+          </button>
+        </div>
 
-<div className="relative mb-4">
-  <input
-    type={showConfirm ? 'text' : 'password'}
-    placeholder="Confirmer le mot de passe"
-    className={`w-full border p-2 rounded pr-10 ${
-      password && confirmPassword
-        ? password === confirmPassword
-          ? 'border-green-500'
-          : 'border-red-500'
-        : ''
-    }`}
-    value={confirmPassword}
-    onChange={(e) => setConfirmPassword(e.target.value)}
-    required
-  />
-  <button
-    type="button"
-    onClick={() => setShowConfirm(!showConfirm)}
-    className="absolute right-2 top-2 text-sm text-gray-500 hover:text-gray-700"
-  >
-    {showConfirm ? 'Masquer' : 'Afficher'}
-  </button>
-</div>
+        <div className="relative mb-4">
+          <input
+            type={showConfirm ? 'text' : 'password'}
+            placeholder="Confirmer le mot de passe"
+            className={`w-full border p-2 rounded pr-10 ${
+              password && confirmPassword
+                ? password === confirmPassword
+                  ? 'border-green-500'
+                  : 'border-red-500'
+                : ''
+            }`}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+          <button
+            type="button"
+            onClick={() => setShowConfirm(!showConfirm)}
+            className="absolute right-2 top-2 text-sm text-gray-500 hover:text-gray-700"
+          >
+            {showConfirm ? 'Masquer' : 'Afficher'}
+          </button>
+        </div>
 
         <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
           S'inscrire

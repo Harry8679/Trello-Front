@@ -41,7 +41,6 @@ const Login = () => {
         <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
           Se connecter
         </button>
-        <hr />
         <div className="mt-4 text-center text-sm text-gray-600">
         <p>
           Pas encore de compte ?{" "}

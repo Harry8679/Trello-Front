@@ -49,7 +49,7 @@ const Login = () => {
           </a>
         </p>
         <p className="mt-1">
-          <a href="#" className="text-blue-600 hover:underline">
+          <a href="/mot-de-passe-oublie" className="text-blue-600 hover:underline">
             Mot de passe oublié ?
           </a>
         </p>

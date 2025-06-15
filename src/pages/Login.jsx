@@ -41,8 +41,8 @@ const Login = () => {
         <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
           Se connecter
         </button>
-      </form>
-      <div className="mt-4 text-center text-sm text-gray-600">
+        <hr />
+        <div className="mt-4 text-center text-sm text-gray-600">
         <p>
           Pas encore de compte ?{" "}
           <a href="/register" className="text-blue-600 hover:underline">
@@ -55,6 +55,8 @@ const Login = () => {
           </a>
         </p>
       </div>
+      </form>
+      
     </div>
   );
 }

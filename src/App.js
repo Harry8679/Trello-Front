@@ -8,11 +8,11 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <Router>
+      <ToastContainer position="top-right" autoClose={3000} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/connexion" element={<Login />} />
         <Route path="/inscription" element={<Register />} />
-        <ToastContainer position="top-right" autoClose={3000} />
       </Routes>
     </Router>
   );

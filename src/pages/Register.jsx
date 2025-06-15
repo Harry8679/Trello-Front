@@ -12,6 +12,9 @@ const Register = () => {
   const [showConfirm, setShowConfirm] = useState(false);
   const navigate = useNavigate();
 
+  
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,12 +24,7 @@ const Register = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:3456/api/auth/register', {
-        email,
-        password,
-        firstName,
-        lastName
-      });
+      const res = await axios.post(`${API_URL}/api/auth/register`, { email, password, firstName, lastName });
 
       localStorage.setItem('token', res.data.token);
       navigate('/');

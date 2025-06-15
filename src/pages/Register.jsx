@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const [firstName, setFirstName] = useState('');
@@ -19,7 +20,7 @@ const Register = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      alert('Les mots de passe ne correspondent pas');
+      toast.success('Les mots de passe ne correspondent pas');
       return;
     }
 
@@ -29,7 +30,7 @@ const Register = () => {
       localStorage.setItem('token', res.data.token);
       navigate('/');
     } catch (err) {
-      alert("L'inscription a échoué");
+      toast.error("L'inscription a échoué");
     }
   };
 

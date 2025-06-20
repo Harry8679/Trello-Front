@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import useAuthStore from '../store/useAuthStore';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -11,12 +12,18 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
+  const { setToken } = useAuthStore();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-      const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
+      /* const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
       localStorage.setItem('token', res.data.token);
+      navigate('/');*/
+      const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
+      setToken(res.data.token); // Zustand
+      toast.success('Connexion réussie');
       navigate('/');
     } catch (err) {
       toast.error('Connexion échouée');

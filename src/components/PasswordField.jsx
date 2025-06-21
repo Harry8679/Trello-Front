@@ -1,4 +1,3 @@
-// src/components/PasswordField.jsx
 import { useState } from 'react';
 
 const PasswordField = ({ value, onChange, placeholder, className = '', highlight = false }) => {

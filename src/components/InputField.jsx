@@ -1,4 +1,3 @@
-// src/components/InputField.jsx
 const InputField = ({
   type = 'text',
   placeholder,

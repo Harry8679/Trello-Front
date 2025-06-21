@@ -28,12 +28,7 @@ const Register = () => {
     }
 
     try {
-      const res = await axios.post(`${API_URL}/api/auth/register`, {
-        email,
-        password,
-        firstName,
-        lastName
-      });
+      const res = await axios.post(`${API_URL}/api/auth/register`, { email, password, firstName, lastName });
 
       setToken(res.data.token); // 👈 via Zustand
       toast.success('Inscription réussie !');
@@ -48,48 +43,24 @@ const Register = () => {
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Inscription</h2>
 
-        <input
-          type="text"
-          placeholder="Prénom"
-          className="w-full border p-2 mb-4 rounded"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          required
-        />
+        <input type="text" placeholder="Prénom" className="w-full border p-2 mb-4 rounded" value={firstName}
+          onChange={(e) => setFirstName(e.target.value)} required />
 
-        <input
-          type="text"
-          placeholder="Nom"
-          className="w-full border p-2 mb-4 rounded"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          required
-        />
+        <input type="text" placeholder="Nom" className="w-full border p-2 mb-4 rounded" value={lastName}
+          onChange={(e) => setLastName(e.target.value)} required />
 
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full border p-2 mb-4 rounded"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        <input type="email" placeholder="Email" className="w-full border p-2 mb-4 rounded" value={email}
+          onChange={(e) => setEmail(e.target.value)} required />
 
         <div className="relative mb-4">
-          <input
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Mot de passe"
-            className={`w-full border p-2 rounded pr-10 ${
-              password && confirmPassword
-                ? password === confirmPassword
+          <input type={showPassword ? 'text' : 'password'} placeholder="Mot de passe"
+            className={`w-full border p-2 rounded pr-10 ${ password && confirmPassword ? password === confirmPassword
                   ? 'border-green-500'
                   : 'border-red-500'
                 : ''
             }`}
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+            onChange={(e) => setPassword(e.target.value)} required />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}

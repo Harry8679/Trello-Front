@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import useAuthStore from '../store/useAuthStore';
 
 const Register = () => {
   const [firstName, setFirstName] = useState('');
@@ -16,18 +17,26 @@ const Register = () => {
   
   const API_URL = process.env.REACT_APP_API_URL;
 
+  const { setToken } = useAuthStore(); // 👈 récupère l'action Zustand
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      toast.success('Les mots de passe ne correspondent pas');
+      toast.error('Les mots de passe ne correspondent pas');
       return;
     }
 
     try {
-      const res = await axios.post(`${API_URL}/api/auth/register`, { email, password, firstName, lastName });
+      const res = await axios.post(`${API_URL}/api/auth/register`, {
+        email,
+        password,
+        firstName,
+        lastName
+      });
 
-      localStorage.setItem('token', res.data.token);
+      setToken(res.data.token); // 👈 via Zustand
+      toast.success('Inscription réussie !');
       navigate('/');
     } catch (err) {
       toast.error("L'inscription a échoué");

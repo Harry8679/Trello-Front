@@ -1,12 +1,4 @@
-const InputField = ({
-  type = 'text',
-  placeholder,
-  value,
-  onChange,
-  required = false,
-  className = '',
-  ...rest
-}) => {
+const InputField = ({ type = 'text', placeholder, value, onChange, required = false, className = '', ...rest }) => {
   return (
     <input
       type={type}

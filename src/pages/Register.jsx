@@ -35,7 +35,7 @@ const Register = () => {
 
       setToken(res.data.token);
       toast.success('Inscription réussie !');
-      navigate('/');
+      navigate('/mes-projets');
     } catch (err) {
       toast.error("L'inscription a échoué");
     }

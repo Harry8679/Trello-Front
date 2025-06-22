@@ -20,7 +20,7 @@ const Login = () => {
       const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
       setToken(res.data.token);
       toast.success('Connexion réussie');
-      navigate('/');
+      navigate('/mes-projets');
     } catch (err) {
       toast.error('Connexion échouée');
     }

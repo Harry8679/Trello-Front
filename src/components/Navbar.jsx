@@ -23,7 +23,7 @@ const Navbar = () => {
         className="text-xl font-bold text-blue-700 cursor-pointer"
         onClick={() => navigate('/mes-projets')}
       >
-        Trello Clone
+        EMARH Trello
       </div>
 
       <div className="relative">

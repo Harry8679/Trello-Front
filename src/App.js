@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ForgotPassword from './pages/ForgotPassword';
+import MyProjects from './pages/MyProjects';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/connexion" element={<Login />} />
         <Route path="/inscription" element={<Register />} />
         <Route path="/mot-de-passe-oublie" element={<ForgotPassword />} />
+        <Route path='/mes-projets' element={<MyProjects />} />
       </Routes>
     </Router>
   );

@@ -1,22 +1,23 @@
-// src/layouts/PrivateLayout.jsx
-import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/useAuthStore';
 import Navbar from '../components/Navbar';
 
 const PrivateLayout = () => {
-  const { token } = useAuthStore();
+  const { token, fetchUser } = useAuthStore();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!token) {
       navigate('/connexion');
+    } else {
+      fetchUser(); // 👈 hydrate user
     }
-  }, [token, navigate]);
+  }, [token, navigate, fetchUser]);
 
   return (
     <>
-      <Navbar /> {/* 👈 Affichée uniquement sur les routes privées */}
+      <Navbar />
       <main className="p-4">
         <Outlet />
       </main>

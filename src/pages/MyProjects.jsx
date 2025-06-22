@@ -1,4 +1,4 @@
-// src/pages/MesProjets.jsx
+// src/pages/MyProjects.jsx
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -7,7 +7,7 @@ import useAuthStore from '../store/useAuthStore';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const MesProjets = () => {
+const MyProjects = () => {
   const [boards, setBoards] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -81,4 +81,4 @@ const MesProjets = () => {
   );
 };
 
-export default MesProjets;
+export default MyProjects;

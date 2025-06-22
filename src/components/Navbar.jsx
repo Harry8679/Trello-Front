@@ -37,6 +37,12 @@ const Navbar = () => {
         {open && (
           <div className="absolute right-0 mt-2 w-52 bg-white border rounded shadow-md z-10 text-sm">
             <button
+              onClick={() => navigate('/show')}
+              className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+            >
+              Voir le profil
+            </button>
+            <button
               onClick={() => navigate('/profil')}
               className="block w-full text-left px-4 py-2 hover:bg-gray-100"
             >

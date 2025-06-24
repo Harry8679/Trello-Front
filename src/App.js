@@ -7,6 +7,7 @@ import MyProjects from './pages/MyProjects';
 import PrivateLayout from './layouts/PrivateLayout';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         {/* Private routes with navbar */}
         <Route element={<PrivateLayout />}>
           <Route path="/mes-projets" element={<MyProjects />} />
+          <Route path="/mes-projets" element={<Profile />} />
         </Route>
       </Routes>
     </Router>

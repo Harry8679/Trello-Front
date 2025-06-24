@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Profile from './pages/Profile';
 import EditEmail from './pages/EditEmail';
+import EditPassword from './pages/EditPassword';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/mes-projets" element={<MyProjects />} />
           <Route path="/mon-profil" element={<Profile />} />
           <Route path="/modifier-mon-profil" element={<EditEmail />} />
+          <Route path="/changer-mot-de-passe" element={<EditPassword />} />
         </Route>
       </Routes>
     </Router>

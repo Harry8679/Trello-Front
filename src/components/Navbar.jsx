@@ -43,7 +43,7 @@ const Navbar = () => {
               Voir le profil
             </button>
             <button
-              onClick={() => navigate('/profil')}
+              onClick={() => navigate('/modifier-mon-profil')}
               className="block w-full text-left px-4 py-2 hover:bg-gray-100"
             >
               Modifier le profil

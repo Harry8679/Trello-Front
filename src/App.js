@@ -23,7 +23,7 @@ function App() {
         {/* Private routes with navbar */}
         <Route element={<PrivateLayout />}>
           <Route path="/mes-projets" element={<MyProjects />} />
-          <Route path="/mes-projets" element={<Profile />} />
+          <Route path="/mon-profil" element={<Profile />} />
         </Route>
       </Routes>
     </Router>

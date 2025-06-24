@@ -27,7 +27,7 @@ const EditEmail = () => {
       );
       toast.success("Email mis à jour avec succès");
       fetchUser();
-      navigate('/profil');
+      navigate('/mon-profil');
     } catch (err) {
       toast.error(err.response?.data?.message || "Erreur lors de la mise à jour");
     }

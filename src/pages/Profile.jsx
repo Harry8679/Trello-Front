@@ -1,4 +1,3 @@
-// src/pages/Profile.jsx
 import { useEffect } from 'react';
 import useAuthStore from '../store/useAuthStore';
 import { useNavigate } from 'react-router-dom';

@@ -14,6 +14,10 @@ const EditPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const [showCurrent, setShowCurrent] = useState(false);
+  const [showNew, setShowNew] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -38,37 +42,34 @@ const EditPassword = () => {
     }
   };
 
+  const renderPasswordField = (label, value, onChange, show, setShow) => (
+    <div className="relative mb-4">
+      <input
+        type={show ? 'text' : 'password'}
+        placeholder={label}
+        className="w-full border p-2 rounded pr-10"
+        value={value}
+        onChange={onChange}
+        required
+      />
+      <button
+        type="button"
+        onClick={() => setShow(!show)}
+        className="absolute right-2 top-2 text-sm text-gray-500 hover:text-gray-700"
+      >
+        {show ? 'Masquer' : 'Afficher'}
+      </button>
+    </div>
+  );
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Changer le mot de passe</h2>
 
-        <input
-          type="password"
-          placeholder="Mot de passe actuel"
-          className="w-full border p-2 mb-4 rounded"
-          value={currentPassword}
-          onChange={(e) => setCurrentPassword(e.target.value)}
-          required
-        />
-
-        <input
-          type="password"
-          placeholder="Nouveau mot de passe"
-          className="w-full border p-2 mb-4 rounded"
-          value={newPassword}
-          onChange={(e) => setNewPassword(e.target.value)}
-          required
-        />
-
-        <input
-          type="password"
-          placeholder="Confirmer le nouveau mot de passe"
-          className="w-full border p-2 mb-4 rounded"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
+        {renderPasswordField('Mot de passe actuel', currentPassword, (e) => setCurrentPassword(e.target.value), showCurrent, setShowCurrent)}
+        {renderPasswordField('Nouveau mot de passe', newPassword, (e) => setNewPassword(e.target.value), showNew, setShowNew)}
+        {renderPasswordField('Confirmer le nouveau mot de passe', confirmPassword, (e) => setConfirmPassword(e.target.value), showConfirm, setShowConfirm)}
 
         <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
           Enregistrer

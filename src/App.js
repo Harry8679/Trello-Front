@@ -25,7 +25,7 @@ function App() {
         <Route element={<PrivateLayout />}>
           <Route path="/mes-projets" element={<MyProjects />} />
           <Route path="/mon-profil" element={<Profile />} />
-          <Route path="/modifier-profil" element={<EditEmail />} />
+          <Route path="/modifier-mon-profil" element={<EditEmail />} />
         </Route>
       </Routes>
     </Router>

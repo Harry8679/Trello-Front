@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/useAuthStore';
@@ -8,7 +7,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
-  if (!user) return null; // Ne rien afficher si non connecté
+  if (!user) return null;
 
   const initials = `${user.firstName?.[0] ?? ''}${user.lastName?.[0] ?? ''}`.toUpperCase();
 
@@ -16,6 +15,18 @@ const Navbar = () => {
     logout();
     navigate('/connexion');
   };
+
+  const avatarStyle = user.avatarUrl
+    ? {
+        backgroundImage: `url(${user.avatarUrl})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        color: 'transparent'
+      }
+    : {
+        backgroundColor: user.avatarColor || '#2563eb',
+        color: 'white'
+      };
 
   return (
     <nav className="bg-white shadow p-4 flex justify-between items-center">
@@ -29,9 +40,10 @@ const Navbar = () => {
       <div className="relative">
         <button
           onClick={() => setOpen(!open)}
-          className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold"
+          className="w-10 h-10 rounded-full flex items-center justify-center font-semibold"
+          style={avatarStyle}
         >
-          {initials}
+          {!user.avatarUrl && initials}
         </button>
 
         {open && (

@@ -8,6 +8,7 @@ import PrivateLayout from './layouts/PrivateLayout';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Profile from './pages/Profile';
+import EditEmail from './pages/EditEmail';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route element={<PrivateLayout />}>
           <Route path="/mes-projets" element={<MyProjects />} />
           <Route path="/mon-profil" element={<Profile />} />
+          <Route path="/modifier-profil" element={<EditEmail />} />
         </Route>
       </Routes>
     </Router>

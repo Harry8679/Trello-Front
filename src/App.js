@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Profile from './pages/Profile';
 import EditEmail from './pages/EditEmail';
 import EditPassword from './pages/EditPassword';
+import EditAvatar from './pages/EditAvatar';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/mon-profil" element={<Profile />} />
           <Route path="/modifier-mon-profil" element={<EditEmail />} />
           <Route path="/changer-mot-de-passe" element={<EditPassword />} />
+          <Route path="/modifier-l-avatar" element={<EditAvatar />} />
         </Route>
       </Routes>
     </Router>

@@ -55,7 +55,7 @@ const Navbar = () => {
               Voir le profil
             </button>
             <button
-              onClick={() => navigate('/mon-profil')}
+              onClick={() => navigate('/modifier-l-avatar')}
               className="block w-full text-left px-4 py-2 hover:bg-gray-100"
             >
               Modifier mon avatar

@@ -99,7 +99,7 @@ const EditAvatar = () => {
         </form>
 
         <button
-          onClick={() => navigate('/profil')}
+          onClick={() => navigate('/mon-profil')}
           className="mt-6 text-blue-600 hover:underline text-sm"
         >
           ⬅ Retour au profil

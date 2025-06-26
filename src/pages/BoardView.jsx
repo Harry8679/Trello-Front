@@ -17,8 +17,8 @@ export default function BoardView() {
     const fetchData = async () => {
       try {
         const [bRes, cRes] = await Promise.all([
-          axios.get(`${API}/boards/${boardId}`, { headers: { Authorization: `Bearer ${token}` } }),
-          axios.get(`${API}/boards/${boardId}/columns`, { headers: { Authorization: `Bearer ${token}` } }),
+          axios.get(`${API}/api/boards/${boardId}`, { headers: { Authorization: `Bearer ${token}` } }),
+          axios.get(`${API}/api/boards/${boardId}/columns`, { headers: { Authorization: `Bearer ${token}` } }),
         ]);
         setBoard(bRes.data);
         setColumns(cRes.data);
@@ -38,7 +38,7 @@ export default function BoardView() {
       }
     };
     fetchData();
-  }, [boardId, token]);
+  }, [API, boardId, token]);
 
   if (!board) return <p>Chargement...</p>;
 

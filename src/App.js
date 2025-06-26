@@ -11,6 +11,8 @@ import Profile from './pages/Profile';
 import EditEmail from './pages/EditEmail';
 import EditPassword from './pages/EditPassword';
 import EditAvatar from './pages/EditAvatar';
+import SetupBoard from './pages/SetupBoard';
+import BoardView from './pages/BoardView';
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
           <Route path="/modifier-mon-profil" element={<EditEmail />} />
           <Route path="/changer-mot-de-passe" element={<EditPassword />} />
           <Route path="/modifier-l-avatar" element={<EditAvatar />} />
+          <Route path="/projects/:boardId/setup" element={<SetupBoard />} />
+          <Route path="/projects/:boardId" element={<BoardView />} />
         </Route>
       </Routes>
     </Router>

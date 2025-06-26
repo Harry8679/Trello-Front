@@ -47,9 +47,10 @@ const MyProjects = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("Projet créé !");
-      setBoards((prev) => [...prev, res.data]);
       setShowModal(false);
       setNewTitle('');
+      // Redirection vers l'étape de configuration
+      navigate(`/projects/${res.data._id}/setup`);
     } catch (err) {
       toast.error("Erreur lors de la création du projet");
     }
@@ -85,7 +86,6 @@ const MyProjects = () => {
         </div>
       )}
 
-      {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
           <div className="bg-white rounded shadow-lg p-6 w-full max-w-md">

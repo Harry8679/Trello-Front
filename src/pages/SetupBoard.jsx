@@ -9,35 +9,37 @@ export default function SetupBoard() {
   const { token } = useAuthStore();
   const navigate = useNavigate();
 
-  // ⚙️ Step control
   const [step, setStep] = useState(1);
-  // Colonne config
   const [columns, setColumns] = useState([{ title: '' }]);
-  // Invitations
   const [invites, setInvites] = useState([{ email: '', canCreate: false }]);
 
   const API = process.env.REACT_APP_API_URL;
 
-  const handleNext = () => setStep((s) => s+1);
-  const handleBack = () => setStep((s) => s-1);
+  const handleNext = () => setStep((s) => s + 1);
+  const handleBack = () => setStep((s) => s - 1);
 
   const submitColumns = async () => {
+    const hasEmpty = columns.some(c => !c.title.trim());
+    if (hasEmpty) return toast.error("Tous les titres sont requis");
+
     try {
-      await axios.post(
+      const res = await axios.post(
         `${API}/boards/${boardId}/columns`,
         { columns },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("Colonnes créées");
       handleNext();
-    } catch(err) {
+    } catch (err) {
       toast.error("Erreur colonnes");
     }
   };
 
   const submitInvites = async () => {
+    const missing = invites.some(i => !i.email.trim());
+    if (missing) return toast.error("Tous les emails sont requis");
+
     try {
-      // fire all invites
       await Promise.all(invites.map(inv =>
         axios.put(`${API}/boards/${boardId}/invite`,
           { userEmail: inv.email, canCreateTasks: inv.canCreate },
@@ -46,57 +48,77 @@ export default function SetupBoard() {
       ));
       toast.success("Invitations envoyées");
       navigate(`/projects/${boardId}`);
-    } catch(e) {
+    } catch (e) {
       toast.error("Erreur invitation");
     }
   };
 
   return (
     <div className="min-h-screen p-8 bg-gray-50 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Configuration projet</h1>
+      <h1 className="text-2xl font-bold mb-6">Configuration du projet</h1>
 
       {step === 1 && (
         <div>
-          <h2 className="font-semibold">Étape 1 : Colonnes</h2>
+          <h2 className="font-semibold mb-2">Étape 1 : Colonnes</h2>
+
           {columns.map((col, i) => (
-            <input
-              key={i}
-              className="block w-full border p-2 mb-2"
-              placeholder={`Titre colonne ${i+1}`}
-              value={col.title}
-              onChange={e => {
-                const arr = [...columns];
-                arr[i].title = e.target.value;
-                setColumns(arr);
-              }}
-            />
+            <div key={i} className="flex items-center gap-2 mb-2">
+              <input
+                className="flex-1 border p-2 rounded"
+                placeholder={`Titre colonne ${i + 1}`}
+                value={col.title}
+                onChange={e => {
+                  const arr = [...columns];
+                  arr[i].title = e.target.value;
+                  setColumns(arr);
+                }}
+              />
+              {columns.length > 1 && (
+                <button
+                  onClick={() => setColumns(columns.filter((_, idx) => idx !== i))}
+                  className="text-red-600 hover:text-red-800"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
           ))}
+
           <button
             className="text-blue-600 hover:underline mb-4"
             onClick={() => setColumns(cols => [...cols, { title: '' }])}
-          >+ Ajouter colonne</button>
+          >
+            + Ajouter une colonne
+          </button>
+
           <div className="flex justify-end space-x-2">
-            <button disabled className="opacity-50">Retour</button>
+            <button disabled className="opacity-50 cursor-not-allowed px-4 py-2 border rounded">
+              Retour
+            </button>
             <button
               onClick={submitColumns}
-              className="bg-blue-600 text-white px-4 py-2 rounded"
-            >Suivant</button>
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              Suivant
+            </button>
           </div>
         </div>
       )}
 
       {step === 2 && (
         <div>
-          <h2 className="font-semibold">Étape 2 : Inviter membres</h2>
-          {invites.map((i,iIdx) => (
-            <div key={iIdx} className="flex items-center gap-2 mb-2">
+          <h2 className="font-semibold mb-2">Étape 2 : Inviter des membres</h2>
+
+          {invites.map((i, idx) => (
+            <div key={idx} className="flex items-center gap-2 mb-2">
               <input
                 type="email"
                 placeholder="Email"
-                className="border p-2 flex-1"
+                className="border p-2 flex-1 rounded"
                 value={i.email}
                 onChange={e => {
-                  const arr=[...invites]; arr[iIdx].email=e.target.value;
+                  const arr = [...invites];
+                  arr[idx].email = e.target.value;
                   setInvites(arr);
                 }}
               />
@@ -105,24 +127,44 @@ export default function SetupBoard() {
                   type="checkbox"
                   checked={i.canCreate}
                   onChange={() => {
-                    const arr=[...invites]; arr[iIdx].canCreate = !arr[iIdx].canCreate;
+                    const arr = [...invites];
+                    arr[idx].canCreate = !arr[idx].canCreate;
                     setInvites(arr);
                   }}
                 />
-                <span>Créer tâches</span>
+                <span className="text-sm">Créer tâches</span>
               </label>
+              {invites.length > 1 && (
+                <button
+                  onClick={() => setInvites(invites.filter((_, iIdx) => iIdx !== idx))}
+                  className="text-red-600 hover:text-red-800"
+                >
+                  ✕
+                </button>
+              )}
             </div>
           ))}
+
           <button
             className="text-blue-600 hover:underline mb-4"
-            onClick={() => setInvites(inv => [...inv, { email:'', canCreate:false }])}
-          >+ Ajouter membre</button>
+            onClick={() => setInvites(inv => [...inv, { email: '', canCreate: false }])}
+          >
+            + Ajouter un membre
+          </button>
+
           <div className="flex justify-between space-x-2">
-            <button onClick={handleBack} className="px-4 py-2">Retour</button>
+            <button
+              onClick={handleBack}
+              className="px-4 py-2 border rounded"
+            >
+              Retour
+            </button>
             <button
               onClick={submitInvites}
-              className="bg-blue-600 text-white px-4 py-2 rounded"
-            >Terminer</button>
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              Terminer
+            </button>
           </div>
         </div>
       )}

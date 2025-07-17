@@ -34,6 +34,7 @@ function App() {
           <Route path="/modifier-l-avatar" element={<EditAvatar />} />
           <Route path="/projects/:boardId/setup" element={<SetupBoard />} />
           <Route path="/projets/:boardId" element={<BoardView />} />
+          <Route path="/projets/:boardId" element={<BoardView />} />
         </Route>
       </Routes>
     </Router>

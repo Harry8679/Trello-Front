@@ -24,7 +24,7 @@ export default function SetupBoard() {
 
     try {
       const res = await axios.post(
-        `${API}/boards/${boardId}/columns`,
+        `${API}/api/boards/${boardId}/columns`,
         { columns },
         { headers: { Authorization: `Bearer ${token}` } }
       );

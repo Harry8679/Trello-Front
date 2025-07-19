@@ -41,7 +41,7 @@ export default function SetupBoard() {
 
     try {
       await Promise.all(invites.map(inv =>
-        axios.put(`${API}/boards/${boardId}/invite`,
+        axios.put(`${API}api/boards/${boardId}/invite`,
           { userEmail: inv.email, canCreateTasks: inv.canCreate },
           { headers: { Authorization: `Bearer ${token}` } }
         )
